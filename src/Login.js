@@ -10,7 +10,16 @@ class Signin extends Component {
     this.state = {
       username: '',
       password: '',
+      isLoginBoxVisible: false, // Add state to control the visibility of the login box
     }
+  }
+
+  // Function to toggle the login box visibility
+  componentDidMount() {
+    // After the component is mounted, set a timeout to show the login box with animation
+    setTimeout(() => {
+      this.setState({ isLoginBoxVisible: true });
+    }, 100);
   }
 
   // Handle input change
@@ -42,8 +51,11 @@ class Signin extends Component {
   }
 
   render() {
+
+    const { isLoginBoxVisible } = this.state;
+
     return (
-      <div className="login">
+      <div className={`login ${isLoginBoxVisible ? '' : 'slide-up'}`}>
         <img src="https://jstdigital.io/wp-content/uploads/2023/05/jst-logo.png" alt="Your Logo" className="logo" />
         <form onSubmit={this.handleSubmit}>
           <div className="text_area">
@@ -70,9 +82,6 @@ class Signin extends Component {
           </div>
           <button type="submit" className="btn">SIGN IN</button>
         </form>
-        {/* Remove the "Sign Up" link
-        <a className="link" href="/signup">Sign Up</a>
-        */}
       </div>
     )
   }
