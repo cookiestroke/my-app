@@ -17,12 +17,18 @@ export default function Sidebar() {
       <button className={styles.menuBtn} onClick={toggleOpen}>
         {open ? <Menu /> : <Menu />}
       </button>
-      {NavData.map((item) => (
-        <NavLink key={item.id} className={styles.sideitem} to={item.link}>
-          {item.icon}
-          <span className={styles.linkText}>{item.text}</span>
-        </NavLink>
-      ))}
+      {open && (
+        <ul className={styles.menuItems}>
+          {NavData.map((item) => (
+            <li key={item.id} className={styles.sideitem}>
+              <NavLink to={item.link}>
+                {item.icon}
+                <span className={styles.linkText}>{item.text}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
