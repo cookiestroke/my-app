@@ -27,8 +27,6 @@ class Signin extends Component {
     this.setState({
       [name]: value
     });
-
-    document.getElementById(name).style.fontFamily = "Montserrat black";
   }
 
   setEmptyValue = (event) => {
