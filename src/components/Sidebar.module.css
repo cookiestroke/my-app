@@ -25,6 +25,24 @@
   padding-left: 16px;
 }
 
+/* Sidebar.module.css */
+.logoContainer {
+  /* Your logo container styles here */
+  transition: all 0.3s; /* Add a transition for smooth animation */
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+  opacity: 1;
+  transition: all 0.3s; /* Add a transition for smooth animation */
+}
+
+.logoClosed {
+  max-width: 0;
+  opacity: 0;
+}
+
 .linkTextClosed {
   composes: linkText;
   visibility: hidden;

@@ -17,6 +17,9 @@ export default function Sidebar() {
       <button className={styles.menuBtn} onClick={toggleOpen}>
         {open ? <Menu /> : <Menu />}
       </button>
+      <div className={styles.logoContainer}>
+        <img src="https://jstdigital.io/wp-content/uploads/2023/05/jst-logo.png" alt="Logo" className={`${styles.logo} ${open ? styles.logoOpen : styles.logoClosed}`} />
+      </div>
       {open && (
         <ul className={styles.menuItems}>
           {NavData.map((item) => (
