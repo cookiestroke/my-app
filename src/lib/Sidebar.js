@@ -12,6 +12,10 @@ export default function Sidebar() {
     setOpen(!open);
   };
 
+  const handleLogout = () => {
+    // Handle the logout logic here
+  };
+
   return (
     <div className={open ? styles.sidebar : styles.sidebarClosed}>
       <button className={styles.menuBtn} onClick={toggleOpen}>
@@ -34,6 +38,9 @@ export default function Sidebar() {
           ))}
         </ul>
       )}
+      <div className={`${styles.logoutButton} ${open ? styles.logoutButtonOpen : styles.logoutButtonClosed}`}>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 }

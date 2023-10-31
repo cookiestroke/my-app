@@ -72,3 +72,32 @@ a {
   cursor: pointer;
   padding-left: 20px;
 }
+
+.logoutButton {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* Adjust the distance from the left as needed */
+  width: 100px; /* Adjust the button width as needed */
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.logoutButton button {
+  padding: 10px 20px;
+  background-color: #000000; /* Customize the button styles */
+  color: #ffffff; /* Text color */
+  border: none;
+  cursor: pointer;
+  font-family: "Calibri";
+  border-radius: 20%;
+}
+
+.logoutButtonOpen {
+  opacity: 1;
+  transform: translateY(0); /* Move the button up */
+}
+
+.logoutButtonClosed {
+  opacity: 0;
+  transform: translateY(100%); /* Move the button out of sight */
+}
