@@ -1,17 +1,18 @@
+/* Sidebar */
 .sidebar {
   width: 250px;
-  transition: width 0.3s ease-in-out;
   height: 100vh;
-  background-color: rgb(10,25,41);
+  background-color: rgb(10, 25, 41);
   padding-top: 28px;
+  transition: width 0.3s ease-in-out;
 }
 
 .sidebarClosed {
   composes: sidebar;
-  transition: width 0.3s ease-in-out;
-  width: 60px
+  width: 60px;
 }
 
+/* Sidebar Items */
 .sideitem {
   display: flex;
   align-items: center;
@@ -25,7 +26,22 @@
   padding-left: 16px;
 }
 
-/* Sidebar.module.css */
+.linkTextClosed {
+  composes: linkText;
+  visibility: hidden;
+}
+
+.sideitem:hover {
+  background-color: #244f7d1c;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Logo */
 .logoContainer {
   display: flex;
   justify-content: center;
@@ -46,24 +62,9 @@
   opacity: 0;
 }
 
-.linkTextClosed {
-  composes: linkText;
-  visibility: hidden;
-}
-
-.sideitem:hover {
-  background-color: #244f7d1c;
-
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
+/* Menu Button */
 .menuBtn {
-  align-self: center;
-  align-self: flex-start; 
+  align-self: flex-start;
   justify-self: flex-end;
   color: #B2BAC2;
   background-color: transparent;
@@ -72,6 +73,7 @@ a {
   padding-left: 20px;
 }
 
+/* Logout Button */
 .logoutButton {
   position: fixed;
   bottom: 20px;
