@@ -27,12 +27,16 @@
 
 /* Sidebar.module.css */
 .logoContainer {
-  /* Your logo container styles here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Adjust the height to your preference */
+  background-color: #ffffff; /* Make the background white */
   transition: all 0.3s; /* Add a transition for smooth animation */
 }
 
 .logo {
-  max-width: 100%;
+  max-width: 80%; /* Shrink the image to 80% of the container width */
   height: auto;
   opacity: 1;
   transition: all 0.3s; /* Add a transition for smooth animation */
