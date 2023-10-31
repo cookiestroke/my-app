@@ -1,12 +1,33 @@
 import Plot from 'react-plotly.js';
 import React from 'react';
-import data from '../static/data_mkt.json'
 
 class MKTVolume extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {data: [], layout: {}, frames: [], config: {}};
-    this.state = {data: data.data, layout: data.layout};
+    this.state = {
+      data: [],
+      layout: {},
+      frames: [],
+      config: {},
+    };
+  }
+
+  componentDidMount() {
+    // Fetch your data here
+    fetch('/data_mkt.json')
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the component's state with the fetched data
+        this.setState({
+          data: data.data,
+          layout: data.layout,
+          frames: data.frames,
+          config: data.config,
+        });
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   }
 
   render() {
