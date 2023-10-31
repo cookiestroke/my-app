@@ -41,7 +41,7 @@ const Day30Vol = () => {
 
 	return (
 		<div>
-			<h1>Dynamic Table with Pagination</h1>
+			<h2 style={{ textAlign: 'center' }}>L30D Volume by Day (JST)</h2>
 			{loading ? (
 				<p>Loading...</p>
 			) : (
