@@ -1,51 +1,16 @@
-// export default function Volume() {
-//   return (
-//     <div>Volume</div>
-//   )
-// }
+import Day30Vol from './day_30_vol';
+import JSTVolume from './jst_volume';
+import MKTVolume from './mkt_volume';
+import React from 'react';
 
-import React, { Component } from "react";
-
-import Chart from "react-apexcharts";
-
-class Volume extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      options: {
-        chart: {
-          id: "basic-bar"
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-        }
-      },
-      series: [
-        {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91]
-        }
-      ]
-    };
-  }
-
-  render() {
-    return (
-      <div className="volume">
-        <div className="row">
-          <div className="mixed-chart">
-            <Chart
-              options={this.state.options}
-              series={this.state.series}
-              type="bar"
-              width="500"
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
+function Volume() {
+  return (
+    <div>
+      <JSTVolume />
+      <MKTVolume />
+      <Day30Vol />
+    </div>
+  );
 }
 
 export default Volume;
