@@ -31,7 +31,6 @@
   justify-content: center;
   align-items: center;
   height: 60px; /* Adjust the height to your preference */
-  background-color: #ffffff; /* Make the background white */
   transition: all 0.3s; /* Add a transition for smooth animation */
 }
 

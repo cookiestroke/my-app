@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Menu from "@mui/icons-material/Menu";
 import { NavData } from "../lib/NavData";
 import { NavLink } from "react-router-dom";
+import logo from "../static/logo_jst_alt.png";
 import styles from "../components/Sidebar.module.css"; // Update the import for CSS Modules
 
 export default function Sidebar() {
@@ -22,7 +23,7 @@ export default function Sidebar() {
         {open ? <Menu /> : <Menu />}
       </button>
       <div className={styles.logoContainer}>
-        <img src="https://jstdigital.io/wp-content/uploads/2023/05/jst-logo.png" alt="Logo" className={`${styles.logo} ${open ? styles.logoOpen : styles.logoClosed}`} />
+        <img src={logo} alt="Logo" className={`${styles.logo} ${open ? styles.logoOpen : styles.logoClosed}`} />
       </div>
       {open && (
         <ul className={styles.menuItems}>
