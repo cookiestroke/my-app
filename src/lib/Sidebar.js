@@ -22,8 +22,10 @@ export default function Sidebar() {
           {NavData.map((item) => (
             <li key={item.id} className={styles.sideitem}>
               <NavLink to={item.link}>
-                {item.icon}
-                <span className={styles.linkText}>{item.text}</span>
+                <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+                  {item.icon}
+                  <span className={styles.linkText}>{item.text}</span>
+                </div>
               </NavLink>
             </li>
           ))}

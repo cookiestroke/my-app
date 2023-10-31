@@ -35,6 +35,11 @@
 
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .menuBtn {
   align-self: center;
   align-self: flex-start; 
