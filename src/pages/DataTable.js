@@ -1,3 +1,5 @@
+import '../components/DataTable.css';
+
 import React from 'react';
 
 const DataTable = ({ data, columns, currentPage, totalPages, onPageChange }) => {
@@ -9,8 +11,8 @@ const DataTable = ({ data, columns, currentPage, totalPages, onPageChange }) => 
 	const currentData = data.slice(startIndex, endIndex);
 
 	return (
-		<div>
-			<table>
+		<div className="table-container">
+			<table className="data-table">
 				{/* Render your table headers */}
 				<thead>
 					<tr>
@@ -30,8 +32,8 @@ const DataTable = ({ data, columns, currentPage, totalPages, onPageChange }) => 
 					))}
 				</tbody>
 			</table>
-			{/* Display pagination info */}
-			<div>
+
+			<div className="pagination">
 				<span>
 					{currentPage} of {totalPages}
 				</span>

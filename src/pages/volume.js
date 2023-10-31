@@ -4,13 +4,28 @@ import MKTVolume from './mkt_volume';
 import React from 'react';
 
 function Volume() {
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column', // Stack the children vertically
+  };
+
+  const rowStyle = {
+    display: 'flex',
+    justifyContent: 'space-between', // Put the two volumes side by side
+  };
+
   return (
-    <div>
-      <JSTVolume />
-      <MKTVolume />
-      <Day30Vol />
+    <div style={containerStyle}>
+      <div style={rowStyle}>
+        <JSTVolume />
+        <MKTVolume />
+      </div>
+      <div>
+        <Day30Vol />
+      </div>
     </div>
   );
 }
 
 export default Volume;
+
