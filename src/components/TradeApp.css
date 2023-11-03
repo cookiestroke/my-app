@@ -3,26 +3,60 @@ body {
   padding: 0;
   /* background-color: rgba(0, 0, 0, 0.858); */
 }
- 
+
 .App {
   display: flex;
   height: 100vh;
 }
- 
-main {
-  padding: 10px;
-  flex-grow: 1;
+
+/* TradeApp.css */
+.mainContent {
+  padding: 1rem;
+  transition: margin-left 0.3s;
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
+  box-sizing: border-box;
 }
 
 .mainOpen {
-  margin-left: 250px; /* Assuming 250px is the width of the open sidebar */
-  transition: margin-left 0.3s; /* Transition for smooth effect */
+  margin-left: 250px;
+  /* Adjust based on the sidebar's width */
 }
 
 .mainClosed {
-  margin-left: 60px; /* When sidebar is closed */
-  transition: margin-left 0.3s; /* Transition for smooth effect */
+  margin-left: 60px;
+  /* Adjust based on the sidebar's collapsed width */
 }
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+
+  .plotWrapper {
+    min-height: 300px; /* Smaller min-height for smaller devices */
+  }
+
+  .mainOpen {
+    margin-left: 250px;
+    /* Adjust based on the sidebar's width */
+  }
+
+  .mainClosed {
+    margin-left: 60px;
+    /* Sidebar might be hidden on smaller screens */
+  }
+
+  .mainContent {
+    padding: 0.5rem;
+  }
+}
+
+/* Ensure images are responsive */
+img.responsive {
+  max-width: 100%;
+  height: auto;
+  /* Maintain aspect ratio */
+}
+
 
 /* Sidebar */
 .sidebar {
@@ -32,7 +66,8 @@ main {
   background-color: rgb(10, 25, 41);
   padding-top: 28px;
   transition: width 0.3s ease-in-out;
-  z-index: 1; /* Ensure the sidebar is above the main content */
+  z-index: 1;
+  /* Ensure the sidebar is above the main content */
 }
 
 .sidebarClosed {
@@ -74,15 +109,19 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px; /* Adjust the height to your preference */
-  transition: all 0.3s; /* Add a transition for smooth animation */
+  height: 60px;
+  /* Adjust the height to your preference */
+  transition: all 0.3s;
+  /* Add a transition for smooth animation */
 }
 
 .logo {
-  max-width: 80%; /* Shrink the image to 80% of the container width */
+  max-width: 80%;
+  /* Shrink the image to 80% of the container width */
   height: auto;
   opacity: 1;
-  transition: all 0.3s; /* Add a transition for smooth animation */
+  transition: all 0.3s;
+  /* Add a transition for smooth animation */
 }
 
 .logoClosed {
@@ -105,16 +144,20 @@ a {
 .logoutButton {
   position: fixed;
   bottom: 20px;
-  left: 20px; /* Adjust the distance from the left as needed */
-  width: 100px; /* Adjust the button width as needed */
+  left: 20px;
+  /* Adjust the distance from the left as needed */
+  width: 100px;
+  /* Adjust the button width as needed */
   text-align: center;
   transition: all 0.3s;
 }
 
 .logoutButton button {
   padding: 10px 20px;
-  background-color: #000000; /* Customize the button styles */
-  color: #ffffff; /* Text color */
+  background-color: #000000;
+  /* Customize the button styles */
+  color: #ffffff;
+  /* Text color */
   border: none;
   cursor: pointer;
   font-family: "Calibri";
@@ -123,10 +166,18 @@ a {
 
 .logoutButtonOpen {
   opacity: 1;
-  transform: translateY(0); /* Move the button up */
+  transform: translateY(0);
+  /* Move the button up */
 }
 
 .logoutButtonClosed {
   opacity: 0;
-  transform: translateY(100%); /* Move the button out of sight */
+  transform: translateY(100%);
+  /* Move the button out of sight */
+}
+
+.plotWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
