@@ -6,6 +6,7 @@
   background-color: rgb(10, 25, 41);
   padding-top: 28px;
   transition: width 0.3s ease-in-out;
+  z-index: 1; /* Ensure the sidebar is above the main content */
 }
 
 .sidebarClosed {

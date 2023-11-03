@@ -42,7 +42,7 @@ form{
     border: none;
     outline: none;
     width: 80%;
-    background: #e3d9d9;
+    background: white;
 }
 
 .btn{
@@ -54,7 +54,7 @@ form{
     border: none;
     font-family: 'Arial Black';
     font-size: 20px;
-    color: #d3c3c3;
+    color: white;
     box-shadow: 0 4px 8px 0 rgba(100, 101, 205, 0.7), 0 6px 20px 0 rgba(130, 129, 226, 0.9);
     cursor: pointer;
 }
@@ -71,7 +71,7 @@ form{
     animation: slide-up 0.8s ease-in-out forwards; /* Apply animation */  
 
     display: inline-block;
-    background: #e3d9d9;
+    background: white;
     width: 500px;
     height: 450px;
     margin-top: 10%;

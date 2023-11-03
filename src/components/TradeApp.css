@@ -6,8 +6,127 @@ body {
  
 .App {
   display: flex;
+  height: 100vh;
 }
  
 main {
   padding: 10px;
+  flex-grow: 1;
+}
+
+.mainOpen {
+  margin-left: 250px; /* Assuming 250px is the width of the open sidebar */
+  transition: margin-left 0.3s; /* Transition for smooth effect */
+}
+
+.mainClosed {
+  margin-left: 60px; /* When sidebar is closed */
+  transition: margin-left 0.3s; /* Transition for smooth effect */
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100vh;
+  background-color: rgb(10, 25, 41);
+  padding-top: 28px;
+  transition: width 0.3s ease-in-out;
+  z-index: 1; /* Ensure the sidebar is above the main content */
+}
+
+.sidebarClosed {
+  composes: sidebar;
+  width: 60px;
+}
+
+/* Sidebar Items */
+.sideitem {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #B2BAC2;
+  text-decoration: none;
+}
+
+.linkText {
+  padding-left: 16px;
+}
+
+.linkTextClosed {
+  composes: linkText;
+  visibility: hidden;
+}
+
+.sideitem:hover {
+  background-color: #244f7d1c;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Logo */
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* Adjust the height to your preference */
+  transition: all 0.3s; /* Add a transition for smooth animation */
+}
+
+.logo {
+  max-width: 80%; /* Shrink the image to 80% of the container width */
+  height: auto;
+  opacity: 1;
+  transition: all 0.3s; /* Add a transition for smooth animation */
+}
+
+.logoClosed {
+  max-width: 0;
+  opacity: 0;
+}
+
+/* Menu Button */
+.menuBtn {
+  align-self: flex-start;
+  justify-self: flex-end;
+  color: #B2BAC2;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding-left: 20px;
+}
+
+/* Logout Button */
+.logoutButton {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* Adjust the distance from the left as needed */
+  width: 100px; /* Adjust the button width as needed */
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.logoutButton button {
+  padding: 10px 20px;
+  background-color: #000000; /* Customize the button styles */
+  color: #ffffff; /* Text color */
+  border: none;
+  cursor: pointer;
+  font-family: "Calibri";
+  border-radius: 20%;
+}
+
+.logoutButtonOpen {
+  opacity: 1;
+  transform: translateY(0); /* Move the button up */
+}
+
+.logoutButtonClosed {
+  opacity: 0;
+  transform: translateY(100%); /* Move the button out of sight */
 }
