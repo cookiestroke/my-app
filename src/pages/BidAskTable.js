@@ -1,82 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import React, { useEffect, useState } from 'react';
 
-// Mock data - replace with the actual data import
-const mockData = {
-  // ... The JSON data extracted earlier
-};
+// Assuming DataTable is a custom component or from another library
+import DataTable from './DataTable';
 
 // DepthTable component to display a table for bids or asks
-const DepthTable = ({ data, title }) => (
-  <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-      <TableHead>
-        <TableRow>
-          <TableCell>{title}</TableCell>
-          <TableCell align="right">10bps</TableCell>
-          <TableCell align="right">20bps</TableCell>
-          <TableCell align="right">50bps</TableCell>
-          <TableCell align="right">100bps</TableCell>
-          <TableCell align="right">200bps</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {Object.entries(data).map(([coin, depthLevels]) => (
-          <TableRow
-            key={coin}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-          >
-            <TableCell component="th" scope="row">
-              {coin}
-            </TableCell>
-            {Object.values(depthLevels).map((depth, index) => (
-              <TableCell align="right" key={index}>{depth.toFixed(2)}</TableCell>
-            ))}
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-);
+const DepthTable = ({ data, title }) => {
+	// Convert data to the array format expected by DataTable
+	const tableData = Object.entries(data).map(([coin, depthLevels]) => ({
+		coin,
+		...depthLevels,
+	}));
+
+	// Define columns for DataTable
+	const columns = [
+		{ header: title, accessor: 'coin' }, // title will be 'Bids' or 'Asks'
+		{ header: '10bps', accessor: '10' },
+		{ header: '20bps', accessor: '20' },
+		{ header: '50bps', accessor: '50' },
+		{ header: '100bps', accessor: '100' },
+		{ header: '200bps', accessor: '200' },
+	];
+
+	return (
+		<DataTable
+			data={tableData}
+			columns={columns}
+		/>
+	);
+};
 
 // Main component that renders the two tables
-const DepthTables = () => {
-  const [bidsData, setBidsData] = useState({});
-  const [asksData, setAsksData] = useState({});
+const BidAskTable = () => {
+	const [bidsData, setBidsData] = useState({});
+	const [asksData, setAsksData] = useState({});
+	const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Here you would fetch your data and set it, but for now, we're using mock data
-    const avgDepths = calculateAverageDepths(mockData);
-    setBidsData(avgDepths.bids);
-    setAsksData(avgDepths.asks);
-  }, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetch('/bps_data.json'); // Path to your JSON file
+				const jsonData = await response.json();
+				const avgDepths = calculateAverageDepths(jsonData);
+				setBidsData(avgDepths.bids);
+				setAsksData(avgDepths.asks);
+			} catch (error) {
+				console.error("Failed to fetch data: ", error);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-  return (
-    <div>
-      <h2>Average Depth per BPS Level (Bids)</h2>
-      <DepthTable data={bidsData} title="Coin" />
-      <h2>Average Depth per BPS Level (Asks)</h2>
-      <DepthTable data={asksData} title="Coin" />
-    </div>
-  );
+		fetchData();
+	}, []);
+
+	if (loading) {
+		return <div>Loading...</div>;
+	}
+
+	return (
+		<div className="row">
+			<div>
+				<h3>Bids</h3>
+				<DepthTable data={bidsData} title="Bids" />
+			</div>
+			<div>
+				<h3>Asks</h3>
+				<DepthTable data={asksData} title="Asks" />
+			</div>
+		</div>
+	);
 };
 
-export default DepthTables;
+export default BidAskTable;
 
-// Function to calculate the average depths (placeholder for actual calculation function)
-const calculateAverageDepths = (data) => {
-  // This function should calculate the average depths for bids and asks
-  // and return an object with the formatted data for the DepthTable component
-  // For now, it returns the mock data directly
-  return {
-    bids: mockData.map(coinData => coinData.bids),
-    asks: mockData.map(coinData => coinData.asks),
-  };
-};
-
+// Helper function to calculate average depths from the JSON data
+function calculateAverageDepths(data) {
+	// Assuming 'data' is the parsed JSON object from '/bps_data.json'
+	const bids = {};
+	const asks = {};
+	for (const [coin, coinData] of Object.entries(data)) {
+		bids[coin] = {};
+		asks[coin] = {};
+		for (const [bps, depthArray] of Object.entries(coinData.bids)) {
+			bids[coin][bps] = depthArray.reduce((acc, { depth }) => acc + depth, 0) / depthArray.length;
+		}
+		for (const [bps, depthArray] of Object.entries(coinData.asks)) {
+			asks[coin][bps] = depthArray.reduce((acc, { depth }) => acc + depth, 0) / depthArray.length;
+		}
+	}
+	return { bids, asks };
+}

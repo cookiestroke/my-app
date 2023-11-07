@@ -2,6 +2,7 @@ import '../components/MarketDepthCharts.css'; // Import the CSS file
 
 import React, { useEffect, useState } from 'react';
 
+import BidAskTable from './BidAskTable';
 import DatePicker from '../lib/DatePicker';
 import TimeSeriesChart from '../lib/TimeSeriesChart';
 
@@ -50,6 +51,7 @@ export default function MarketDepthCharts({ cryptocurrencies, depthTypes }) {
 					<DatePicker label="End Date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
 				</div>
 			</div>
+			<BidAskTable />
 			{cryptocurrencies.map(coin => (
 				<div key={coin} className="row">
 					{depthTypes.map(type => (
