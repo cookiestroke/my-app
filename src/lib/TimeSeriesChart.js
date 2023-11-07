@@ -1,8 +1,28 @@
+import React, { useEffect, useState } from 'react';
+
 import Plot from 'react-plotly.js';
-import React from 'react';
 
 const TimeSeriesChart = ({ coin, type, data }) => {
   const bpsLevels = ['10bps', '20bps', '50bps', '100bps', '200bps'];
+  
+  // useState to set the width of the chart
+  const [chartWidth, setChartWidth] = useState(window.innerWidth / 2 - 250);
+
+  // useEffect to update the width on screen resize
+  useEffect(() => {
+    const handleResize = () => {
+      setChartWidth((window.innerWidth - 300) / 2);
+    };
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Call the handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty array ensures that effect is only run on mount and unmount
 
   return (
     <div>
@@ -20,7 +40,7 @@ const TimeSeriesChart = ({ coin, type, data }) => {
           title: `${coin} ${type.toUpperCase()} Depth Over Time`,
           xaxis: { title: 'Date' },
           yaxis: { title: 'Depth' },
-          // width: 600,
+          width: chartWidth, // Set the width state
           // height: 400,
           // margin: { l: 50, r: 50, b: 100, t: 100, pad: 4 },
           paper_bgcolor: '#f8f9fa',
@@ -32,4 +52,3 @@ const TimeSeriesChart = ({ coin, type, data }) => {
 };
 
 export default TimeSeriesChart;
-
