@@ -6,13 +6,17 @@ class MKTVolume extends React.Component {
     super(props);
     this.state = {
       data: [],
-      layout: {},
+      layout: { autosize: false },
       frames: [],
       config: {},
     };
+    this.updatePlotSize = this.updatePlotSize.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.updatePlotSize);
+    this.updatePlotSize(); // Set initial size
+
     // Fetch your data here
     fetch('/data_mkt.json')
       .then((response) => response.json())
@@ -20,7 +24,7 @@ class MKTVolume extends React.Component {
         // Update the component's state with the fetched data
         this.setState({
           data: data.data,
-          layout: data.layout,
+          layout: { ...data.layout, ...this.state.layout },
           frames: data.frames,
           config: data.config,
         });
@@ -28,6 +32,20 @@ class MKTVolume extends React.Component {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updatePlotSize);
+  }
+
+  updatePlotSize() {
+    const newWidth = (window.innerWidth - 300) / 2;
+    this.setState({
+      layout: {
+        ...this.state.layout,
+        width: newWidth,
+      },
+    });
   }
 
   render() {

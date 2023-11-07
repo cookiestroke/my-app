@@ -15,22 +15,17 @@ function Volume() {
 		justifyContent: 'space-between', // Put the two volumes side by side
 	};
 
-	const volumeBorderStyle = {
-		border: '1px solid #ccc', // Add a 1px solid gray border
-		padding: '10px', // Add some padding for spacing
-	};
-
 	return (
 		<div style={containerStyle}>
 			<div>
-				<VolSnapshot style={volumeBorderStyle} />
+				<VolSnapshot />
 			</div>
 			<div style={rowStyle}>
-				<JSTVolume style={volumeBorderStyle} />
-				<MKTVolume style={volumeBorderStyle} />
+				<JSTVolume />
+				<MKTVolume />
 			</div>
 			<div>
-				<Day30Vol style={volumeBorderStyle} />
+				<Day30Vol />
 			</div>
 		</div>
 	);
