@@ -238,9 +238,8 @@
                 27.666666666666668
             ],
             "autorange": true
-        },
-        "height": 450,
-        "width": 1000,
-        "autosize": true
+        }
+        , "autosize": true
+        , "width": 800
     }
 }
