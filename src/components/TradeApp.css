@@ -13,8 +13,8 @@ body {
 .mainContent {
   padding: 1rem;
   transition: margin-left 0.3s;
-  overflow-x: hidden;
-  /* Prevent horizontal scrolling */
+  overflow: none;
+  /* Prevent scrolling */
   box-sizing: border-box;
 }
 
