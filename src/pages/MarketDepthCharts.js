@@ -2,8 +2,8 @@ import '../components/MarketDepthCharts.css'; // Import the CSS file
 
 import React, { useEffect, useState } from 'react';
 
-import DatePicker from './DatePicker';
-import TimeSeriesChart from './TimeSeriesChart';
+import DatePicker from '../lib/DatePicker';
+import TimeSeriesChart from '../lib/TimeSeriesChart';
 
 export default function MarketDepthCharts({ cryptocurrencies, depthTypes }) {
 	const [startDate, setStartDate] = useState('');

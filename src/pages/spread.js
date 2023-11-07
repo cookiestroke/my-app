@@ -1,4 +1,4 @@
-import MarketDepthCharts from '../lib/MarketDepthCharts';
+import MarketDepthCharts from '../pages/MarketDepthCharts';
 import React from 'react';
 
 function App() {
