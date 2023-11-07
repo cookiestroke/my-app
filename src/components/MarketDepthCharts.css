@@ -1,31 +1,61 @@
-/* MarketDepthCharts.css */
-
-/* .market-depth-charts-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .market-depth-charts-header {
-    margin-bottom: 20px;
-  }
-  
-  .date-picker-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .chart-container {
+.container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-  
-  .charts-wrapper {
+}
+
+.row {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-   */
+    justify-content: space-between;
+    margin-bottom: 1em;
+    /* Add some space between the rows */
+}
+
+/* If using a library like Material-UI, you might not need the following */
+.date-picker-container {
+    /* Space around the container */
+    margin: 10px;
+
+    /* Internal space */
+    padding: 20px;
+
+    /* Flexbox layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Visual styling */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Text formatting */
+    text-align: left;
+    /* Centers text horizontally */
+    color: #333;
+    /* Dark grey text color */
+    line-height: 1.6;
+    /* Adjust line height for better readability */
+}
+
+.date-picker {
+    display: flex;
+    align-items: center;
+    /* This will vertically center align items */
+    gap: 8px;
+    /* This adds space between the label and the input */
+}
+
+.date-picker-label {
+    margin-right: 0.5em;
+    /* Optionally, you can add right margin to the label */
+}
+
+.date-picker-input {
+    flex: 1;
+    /* This will make the input take up the remaining space */
+}

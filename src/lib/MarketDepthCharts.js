@@ -1,65 +1,62 @@
+import '../components/MarketDepthCharts.css'; // Import the CSS file
+
 import React, { useEffect, useState } from 'react';
 
 import DatePicker from './DatePicker';
 import TimeSeriesChart from './TimeSeriesChart';
 
 export default function MarketDepthCharts({ cryptocurrencies, depthTypes }) {
-	const containerStyle = {
-		display: 'flex',
-		flexDirection: 'column', // Stack the children vertically
-	};
-
-	const rowStyle = {
-		display: 'flex',
-		justifyContent: 'space-between', // Put the two volumes side by side
-	};
-	
 	const [startDate, setStartDate] = useState('');
 	const [endDate, setEndDate] = useState('');
 	const [timeSeriesData, setTimeSeriesData] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
-	const handleStartDateChange = (event) => {
-		setStartDate(event.target.value);
-	};
-
-	const handleEndDateChange = (event) => {
-		setEndDate(event.target.value);
+	const fetchData = async () => {
+		try {
+			const response = await fetch('/bps_data.json');
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			const data = await response.json();
+			setTimeSeriesData(data);
+			setLoading(false);
+		} catch (error) {
+			setError(error.message);
+			console.error('There has been a problem with your fetch operation:', error);
+		}
 	};
 
 	useEffect(() => {
-		fetch('/bps_data.json')
-			.then(response => {
-				if (!response.ok) {
-					throw new Error('Network response was not ok');
-				}
-				return response.json();
-			})
-			.then(data => setTimeSeriesData(data))
-			.catch(error => {
-				console.error('There has been a problem with your fetch operation:', error);
-			});
-	}, []); // Empty dependency array means this effect will only run once, similar to componentDidMount
+		fetchData();
+	}, []);
 
-	if (!timeSeriesData) {
+	if (loading) {
 		return <div>Loading...</div>;
 	}
 
+	if (error) {
+		return <div>Error: {error}</div>;
+	}
+
 	return (
-		<div style={containerStyle}>
+		<div className="container">
 			<h1>Market Depth Charts</h1>
-			<div style={rowStyle}>
-				<DatePicker label="Start Date" value={startDate} onChange={handleStartDateChange} />
-				<DatePicker label="End Date" value={endDate} onChange={handleEndDateChange} />
+			<div className="row">
+				<div className="date-picker-container">
+					<DatePicker label="Start Date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+				</div>
+				<div className="date-picker-container">
+					<DatePicker label="End Date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+				</div>
 			</div>
-			<div>
-				{cryptocurrencies.map(coin => (
-					<div key={coin} style={rowStyle}>
-						{depthTypes.map(type => (
-							<TimeSeriesChart key={`${coin}-${type}`} coin={coin} type={type} data={timeSeriesData} />
-						))}
-					</div>
-				))}
-			</div>
+			{cryptocurrencies.map(coin => (
+				<div key={coin} className="row">
+					{depthTypes.map(type => (
+						<TimeSeriesChart key={`${coin}-${type}`} coin={coin} type={type} data={timeSeriesData} />
+					))}
+				</div>
+			))}
 		</div>
 	);
 }
