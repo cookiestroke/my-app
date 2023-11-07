@@ -1,0 +1,38 @@
+[
+  {
+      "coin": "BTC", 
+      "jstL24H": "10", 
+      "marketL24H": "20", 
+      "jstL7D": "70", 
+      "marketL7D": "140", 
+      "jstL30D": "300", 
+      "marketL30D": "600", 
+      "jstL90D": "900", 
+      "marketL90D": "1800"
+  },
+  {
+      "coin": "ETH", 
+      "jstL24H": "15", 
+      "marketL24H": "30", 
+      "jstL7D": "105", 
+      "marketL7D": "210", 
+      "jstL30D": "450", 
+      "marketL30D": "900", 
+      "jstL90D": "1350", 
+      "marketL90D": "2700"
+  },
+  {
+      "coin": "AVAX", 
+      "jstL24H": "5", 
+      "marketL24H": "10", 
+      "jstL7D": "35", 
+      "marketL7D": "70", 
+      "jstL30D": "150", 
+      "marketL30D": "300", 
+      "jstL90D": "450", 
+      "marketL90D": "900"
+  }
+]
+
+
+

@@ -2,18 +2,17 @@ import '../components/DataTable.css';
 
 import React from 'react';
 
-const DataTable = ({ data, columns, currentPage, totalPages, onPageChange }) => {
+const DataTable = ({ data, columns, currentPage = 1, totalPages = 1, onPageChange = () => {} }) => {
 	// Calculate the range of data to display
 	const startIndex = (currentPage - 1) * 10;
 	const endIndex = startIndex + 10;
 
 	// Slice the data to display only the current page's data
-	const currentData = data.slice(startIndex, endIndex);
+	const currentData = data.slice(startIndex, Math.min(endIndex, data.length));
 
 	return (
 		<div className="table-container">
 			<table className="data-table">
-				{/* Render your table headers */}
 				<thead>
 					<tr>
 						{columns.map((column, index) => (
@@ -22,7 +21,6 @@ const DataTable = ({ data, columns, currentPage, totalPages, onPageChange }) => 
 					</tr>
 				</thead>
 				<tbody>
-					{/* Map over the currentData and render rows */}
 					{currentData.map((item, index) => (
 						<tr key={index}>
 							{columns.map((column, columnIndex) => (
@@ -33,23 +31,25 @@ const DataTable = ({ data, columns, currentPage, totalPages, onPageChange }) => 
 				</tbody>
 			</table>
 
-			<div className="pagination">
-				<span>
-					{currentPage} of {totalPages}
-				</span>
-				<button
-					onClick={() => onPageChange(currentPage - 1)}
-					disabled={currentPage === 1}
-				>
-					&#8592; Previous
-				</button>
-				<button
-					onClick={() => onPageChange(currentPage + 1)}
-					disabled={currentPage === totalPages}
-				>
-					Next &#8594;
-				</button>
-			</div>
+			{totalPages > 1 && (
+				<div className="pagination">
+					<span>
+						Page {currentPage} of {totalPages}
+					</span>
+					<button
+						onClick={() => onPageChange(currentPage - 1)}
+						disabled={currentPage <= 1}
+					>
+						&#8592; Previous
+					</button>
+					<button
+						onClick={() => onPageChange(currentPage + 1)}
+						disabled={currentPage >= totalPages}
+					>
+						Next &#8594;
+					</button>
+				</div>
+			)}
 		</div>
 	);
 };
