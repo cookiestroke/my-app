@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 // Assume DataTable is a pre-existing component that accepts columns and data props
 import DataTable from './DataTable';
+import LoadingSpinner from '../lib/LoadingSpinner'; // Import the LoadingSpinner component
 
 const VolumeTable = () => {
   const [data, setData] = useState([]);
@@ -35,7 +36,7 @@ const VolumeTable = () => {
     <div>
       <h2 style={{ textAlign: 'center' }}>Volume Table (JST vs Market)</h2>
       {loading ? (
-        <p>Loading...</p>
+        <LoadingSpinner />
       ) : (
         <DataTable
           data={data}

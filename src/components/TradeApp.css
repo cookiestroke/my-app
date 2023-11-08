@@ -23,7 +23,6 @@ body {
 .mainContent {
   padding: 1rem;
   transition: margin-left 0.3s; /* Transition for sidebar animations */
-  overflow: hidden; /* Corrected from 'none' to 'hidden' to prevent scrolling */
   box-sizing: border-box;
 }
 

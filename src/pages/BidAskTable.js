@@ -3,6 +3,7 @@ import '../components/DataTable.css';
 import React, { useEffect, useState } from 'react';
 
 import DataTable from './DataTable';
+import LoadingSpinner from '../lib/LoadingSpinner'; // Import the LoadingSpinner component
 
 // Helper function to calculate average depths from the JSON data
 function calculateAverageDepths(data) {
@@ -83,7 +84,7 @@ const BidAskTable = () => {
 	}));
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return <LoadingSpinner />;
 	}
 
 	return (

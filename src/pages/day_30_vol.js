@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import DataTable from './DataTable';
+import LoadingSpinner from '../lib/LoadingSpinner'; // Import the LoadingSpinner component
 
 const Day30Vol = () => {
 	const [data, setData] = useState([]);
@@ -43,7 +44,7 @@ const Day30Vol = () => {
 		<div>
 			<h2 style={{ textAlign: 'center' }}>L30D Volume by Day (JST)</h2>
 			{loading ? (
-				<p>Loading...</p>
+				<LoadingSpinner />
 			) : (
 			<DataTable
 				data={data}

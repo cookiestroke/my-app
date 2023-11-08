@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import BidAskTable from './BidAskTable';
 import DatePicker from '../lib/DatePicker';
+import LoadingSpinner from '../lib/LoadingSpinner'; // Import the LoadingSpinner component
 import TimeSeriesChart from '../lib/TimeSeriesChart';
 
 export default function MarketDepthCharts({ cryptocurrencies, depthTypes }) {
@@ -33,7 +34,7 @@ export default function MarketDepthCharts({ cryptocurrencies, depthTypes }) {
 	}, []);
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return <LoadingSpinner />;
 	}
 
 	if (error) {
