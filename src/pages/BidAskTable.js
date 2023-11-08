@@ -24,14 +24,23 @@ function calculateAverageDepths(data) {
 
 // Helper function to calculate the top of book averages
 function calculateTopOfBookAverages(bidsData, asksData) {
-	// Assuming '10bps' is the top of the book level
-	const averages = { 'Average Top of Book': 'Avg' };
-	Object.keys(bidsData).forEach((coin) => {
-		const bid = bidsData[coin]['10bps'];
-		const ask = asksData[coin]['10bps'];
-		averages[coin] = ((bid + ask) / 2).toFixed(3);
-	});
-	return averages;
+    const averages = { 'Average Top of Book': 'Avg' };
+    Object.keys(bidsData).forEach((coin) => {
+        // Get the smallest bps for bids and asks
+        const bidBps = Math.min(...Object.keys(bidsData[coin]).map(bps => parseFloat(bps))).toString() + 'bps';
+        const askBps = Math.min(...Object.keys(asksData[coin]).map(bps => parseFloat(bps))).toString() + 'bps';
+
+        // Check if the smallest bps is the same for bids and asks, use it for average calculation
+        if (bidBps === askBps) {
+            const bid = bidsData[coin][bidBps];
+            const ask = asksData[coin][askBps];
+            averages[coin] = ((bid + ask) / 2).toFixed(3);
+        } else {
+            // Handle the case where bidBps and askBps are not equal
+            console.error(`Bids and asks have different smallest bps values for ${coin}.`);
+        }
+    });
+    return averages;
 }
 
 const DepthTable = ({ data, title }) => {
