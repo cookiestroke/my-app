@@ -2,6 +2,7 @@
 
 .table-container {
     margin: 20px;
+    flex: 1; /* This allows the table to grow and take available space */
 }
 
 .data-table {
@@ -10,6 +11,7 @@
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    table-layout: fixed; /* This helps with equal column spacing */
 }
 
 .data-table td {
@@ -53,3 +55,10 @@
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+/* For smaller screens, you might want to stack the tables instead of having them side by side */
+@media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+  }
