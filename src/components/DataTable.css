@@ -1,7 +1,6 @@
-/* Add these styles to your CSS file or style tag */
-
 .table-container {
     margin: 20px;
+    overflow-x: auto; /* Adds scroll on small screens */
     flex: 1; /* This allows the table to grow and take available space */
 }
 
@@ -14,9 +13,9 @@
     table-layout: fixed; /* This helps with equal column spacing */
 }
 
+.data-table th,
 .data-table td {
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px;
     text-align: right;
     border-bottom: 1px solid #e0e0e0;
 }
@@ -26,6 +25,7 @@
     font-weight: bold;
     text-align: right;
     color: #333;
+    border-bottom: 2px solid #000; /* Black line for the header */
 }
 
 .data-table tr:nth-child(even) {
@@ -49,6 +49,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    outline: none; /* Removes the outline to match the design */
 }
 
 .pagination button:disabled {
@@ -61,4 +62,7 @@
     .row {
       flex-direction: column;
     }
-  }
+    .table-container {
+      margin: 20px 0; /* Adjust margin for vertical stacking */
+    }
+}
