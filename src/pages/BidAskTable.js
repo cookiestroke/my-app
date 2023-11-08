@@ -3,31 +3,33 @@ import React, { useEffect, useState } from 'react';
 // Assuming DataTable is a custom component or from another library
 import DataTable from './DataTable';
 
-// DepthTable component to display a table for bids or asks
 const DepthTable = ({ data, title }) => {
-	// Convert data to the array format expected by DataTable
-	const tableData = Object.entries(data).map(([coin, depthLevels]) => ({
-		coin,
-		...depthLevels,
-	}));
+    // Convert data to the array format expected by DataTable
+    const tableData = Object.entries(data).map(([coin, depthLevels]) => ({
+        coin,
+        ...depthLevels,
+    }));
 
-	// Define columns for DataTable
-	const columns = [
-		{ header: title, accessor: 'coin' }, // title will be 'Bids' or 'Asks'
-		{ header: '10bps', accessor: '10' },
-		{ header: '20bps', accessor: '20' },
-		{ header: '50bps', accessor: '50' },
-		{ header: '100bps', accessor: '100' },
-		{ header: '200bps', accessor: '200' },
-	];
+    // Generate columns dynamically from the first item's keys
+    const columns = tableData.length > 0
+        ? Object.keys(tableData[0]).map(key => ({
+              header: key,
+              dataField: key,
+          }))
+        : [];
 
-	return (
-		<DataTable
-			data={tableData}
-			columns={columns}
-		/>
-	);
+    // Debug log to check the structure of tableData and columns
+    console.log('Table Data:', tableData);
+    console.log('Columns:', columns);
+
+    return (
+        <DataTable
+            data={tableData}
+            columns={columns}
+        />
+    );
 };
+
 
 // Main component that renders the two tables
 const BidAskTable = () => {

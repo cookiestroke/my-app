@@ -2,7 +2,13 @@ import '../components/DataTable.css';
 
 import React from 'react';
 
-const DataTable = ({ data, columns, currentPage = 1, totalPages = 1, onPageChange = () => {} }) => {
+// Helper function to format the value to a fixed number of decimal places
+const formatValue = (value) => {
+	// Check if it is a number and format it
+	return typeof value === 'number' ? value.toFixed(3) : value;
+};
+
+const DataTable = ({ data, columns, currentPage = 1, totalPages = 1, onPageChange = () => { } }) => {
 	// Calculate the range of data to display
 	const startIndex = (currentPage - 1) * 10;
 	const endIndex = startIndex + 10;
@@ -24,7 +30,7 @@ const DataTable = ({ data, columns, currentPage = 1, totalPages = 1, onPageChang
 					{currentData.map((item, index) => (
 						<tr key={index}>
 							{columns.map((column, columnIndex) => (
-								<td key={columnIndex}>{item[column.dataField]}</td>
+								<td key={columnIndex}>{formatValue(item[column.dataField])}</td>
 							))}
 						</tr>
 					))}
