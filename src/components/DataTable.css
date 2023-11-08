@@ -25,7 +25,7 @@
     font-weight: bold;
     text-align: right;
     color: #333;
-    border-bottom: 2px solid #000; /* Black line for the header */
+    border-bottom: 1px solid #000; /* Black line for the header */
 }
 
 .data-table tr:nth-child(even) {
