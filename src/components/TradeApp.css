@@ -1,78 +1,66 @@
+:root {
+  /* Define CSS variables for colors and dimensions used throughout the stylesheet */
+  --background-dark: rgba(0, 0, 0, 0.858);
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 60px;
+  --sidebar-background-color: rgb(10, 25, 41);
+  --sidebar-hover-color: #244f7d1c;
+  --primary-text-color: #B2BAC2;
+  --button-background-color: #000000;
+  --button-text-color: #ffffff;
+}
+
 body {
   margin: 0;
   padding: 0;
-  /* background-color: rgba(0, 0, 0, 0.858); */
+  /* background-color: var(--background-dark); */ /* Uncomment if background color is needed */
 }
 
 .App {
-  /* display: flex; */
   height: 100vh;
 }
 
-/* TradeApp.css */
 .mainContent {
   padding: 1rem;
-  transition: margin-left 0.3s;
-  overflow: none;
-  /* Prevent scrolling */
+  transition: margin-left 0.3s; /* Transition for sidebar animations */
+  overflow: hidden; /* Corrected from 'none' to 'hidden' to prevent scrolling */
   box-sizing: border-box;
 }
 
 .mainOpen {
-  margin-left: 250px;
-  /* Adjust based on the sidebar's width */
+  margin-left: var(--sidebar-width);
 }
 
 .mainClosed {
-  margin-left: 60px;
-  /* Adjust based on the sidebar's collapsed width */
+  margin-left: var(--sidebar-collapsed-width);
 }
 
 /* Responsive design adjustments */
 @media (max-width: 768px) {
-
-  .plotWrapper {
-    min-height: 300px; /* Smaller min-height for smaller devices */
-  }
-
-  .mainOpen {
-    margin-left: 250px;
-    /* Adjust based on the sidebar's width */
-  }
-
-  .mainClosed {
-    margin-left: 60px;
-    /* Sidebar might be hidden on smaller screens */
-  }
-
   .mainContent {
-    padding: 0.5rem;
+    padding: 0.5rem; /* Reduced padding on smaller screens */
   }
 }
 
 /* Ensure images are responsive */
 img.responsive {
   max-width: 100%;
-  height: auto;
-  /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
 }
-
 
 /* Sidebar */
 .sidebar {
   position: fixed;
-  width: 250px;
+  width: var(--sidebar-width);
   height: 100vh;
-  background-color: rgb(10, 25, 41);
+  background-color: var(--sidebar-background-color);
   padding-top: 28px;
   transition: width 0.3s ease-in-out;
   z-index: 1;
-  /* Ensure the sidebar is above the main content */
 }
 
 .sidebarClosed {
-  composes: sidebar;
-  width: 60px;
+  width: var(--sidebar-collapsed-width);
 }
 
 /* Sidebar Items */
@@ -81,7 +69,7 @@ img.responsive {
   align-items: center;
   padding: 10px 20px;
   cursor: pointer;
-  color: #B2BAC2;
+  color: var(--primary-text-color);
   text-decoration: none;
 }
 
@@ -90,12 +78,11 @@ img.responsive {
 }
 
 .linkTextClosed {
-  composes: linkText;
   visibility: hidden;
 }
 
 .sideitem:hover {
-  background-color: #244f7d1c;
+  background-color: var(--sidebar-hover-color);
 }
 
 /* Links */
@@ -110,18 +97,14 @@ a {
   justify-content: center;
   align-items: center;
   height: 60px;
-  /* Adjust the height to your preference */
   transition: all 0.3s;
-  /* Add a transition for smooth animation */
 }
 
 .logo {
   max-width: 80%;
-  /* Shrink the image to 80% of the container width */
   height: auto;
   opacity: 1;
-  transition: all 0.3s;
-  /* Add a transition for smooth animation */
+  transition: opacity 0.3s, max-width 0.3s;
 }
 
 .logoClosed {
@@ -133,7 +116,7 @@ a {
 .menuBtn {
   align-self: flex-start;
   justify-self: flex-end;
-  color: #B2BAC2;
+  color: var(--primary-text-color);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -145,19 +128,15 @@ a {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  /* Adjust the distance from the left as needed */
   width: 100px;
-  /* Adjust the button width as needed */
   text-align: center;
-  transition: all 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .logoutButton button {
   padding: 10px 20px;
-  background-color: #000000;
-  /* Customize the button styles */
-  color: #ffffff;
-  /* Text color */
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
   border: none;
   cursor: pointer;
   font-family: "Calibri";
@@ -167,13 +146,11 @@ a {
 .logoutButtonOpen {
   opacity: 1;
   transform: translateY(0);
-  /* Move the button up */
 }
 
 .logoutButtonClosed {
   opacity: 0;
   transform: translateY(100%);
-  /* Move the button out of sight */
 }
 
 .plotWrapper {
